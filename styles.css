@@ -1,39 +1,62 @@
 body {
-    text-align: center;
-    background-color: #1d3557;
-    color: #f1faee;
-    font-family: "Silkscreen", cursive;
-  }
-  
-  h1 {
-    font-size: 5rem;
-  }
-  
-  .btn {
-    display: inline-block;
-    width: 14rem;
-    height: 14rem;
-    margin: 1.2rem;
-    border: 0.6rem solid #121212;
-  }
-  
-  #green {
-      border-radius: 100% 15% 10% 15%;
-      background: #1dbd0b;
-  }
-  
-  #red {
-      border-radius: 15% 100% 15% 10%;
-      background: #bd0b0b;
-  }
-  
-  #yellow {
-      border-radius: 15% 10% 15% 100%;
-    background: #e3bc0e;
-  }
-  
-  #blue {
-      border-radius: 10% 15% 100% 15%;
-      background: #0b3ebd;
-  }
-  
+  text-align: center;
+  background-color: #1d3557;
+  color: #f1faee;
+  font-family: "Silkscreen", cursive;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+.btn {
+  display: inline-block;
+  width: 14rem;
+  height: 14rem;
+  margin: 1.2rem;
+  border: 0.6rem solid #121212;
+}
+
+.pressed {
+  border-color: #212121;
+}
+
+#green {
+  border-radius: 100% 15% 10% 15%;
+  background: #1dbd0b;
+}
+
+#green.pressed {
+  box-shadow: 0 0 50px green;
+  background: #36e813;
+}
+
+#red {
+  border-radius: 15% 100% 15% 10%;
+  background: #bd0b0b;
+}
+
+#red.pressed {
+  box-shadow: 0 0 50px red;
+  background: red;
+}
+
+#yellow {
+  border-radius: 15% 10% 15% 100%;
+  background: #e3bc0e;
+}
+
+#yellow.pressed {
+  box-shadow: 0 0 50px yellow;
+  background: yellow;
+}
+
+#blue {
+  border-radius: 10% 15% 100% 15%;
+  background: #0b3ebd;
+}
+
+#blue.pressed {
+  box-shadow: 0 0 50px blue;
+  background: blue;
+}
