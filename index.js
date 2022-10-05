@@ -1,61 +1,27 @@
 // Global variables
 let colors = ["green", "red", "yellow", "blue"];
-let game = [];
-let user = [];
+let gameSeq = [];
 let level = -1;
 let count = 0;
-let active = true;
+let active = false;
 
-// Register click Event Listeners
-$(".btn").on("click", function () {
+$("#start").click(startGame);
+
+$(".btn").click(function () {
+  pressButton(this.id);
+
   if (active) {
-    pressButton(this.id);
-    if (level === -1) {
-      startGame();
+    if (gameSeq[count] === this.id) {
+      if (count === gameSeq.length - 1) {
+        next();
+      }
+      count++;
     } else {
-      user.push(this.id);
-      check(count);
+      gameOver();
     }
   }
 });
 
-function startGame() {
-  $("#cover").css("background", "#f1faee");
-  $("#cover").fadeIn(200).fadeOut(200);
-  $("h1").text(level);
-  $("h3").html("&nbsp;");
-  setTimeout(next(), 1000);
-}
-
-function check(count) {
-  if (game[count] === user[count]) {
-    console.log(user);
-    console.log("success");
-    if (game.length === user.length) {
-      count = 0;
-      setTimeout(function () {
-        next();
-      }, 1000);
-      console.log("pattern complete");
-    }
-    count++;
-  } else {
-    gameOver();
-  }
-}
-
-function gameOver() {
-  $("#cover").css("background", "red");
-  $("#cover").fadeIn(150).fadeOut(150);
-  $("h1").text("Game Over");
-  $("h3").text("Your Score: " + level);
-  level = -1;
-  count = 0;
-  game = [];
-  user = [];
-}
-
-// Simulate what will happen when a button is pressed.
 function pressButton(color) {
   $("#" + color).addClass("pressed");
   setTimeout(function () {
@@ -65,25 +31,48 @@ function pressButton(color) {
   audio.play();
 }
 
-function playSequence(i) {
-  setTimeout(function () {
-    pressButton(game[i]);
-    if (i++ < game.length) play(i);
-  }, 700);
+function startGame() {
+  $(".btn").addClass("disable");
+  $("#cover").css("background", "#f1faee");
+  $("#cover").fadeIn(200).fadeOut(200);
+  $("h3").html("&nbsp;");
+  $("#start").hide();
+  next();
 }
 
-async function next() {
+function next() {
   active = false;
-
-  let color = colors[Math.floor(Math.random() * 4)];
-  game.push(color);
-  console.log(game);
-
-  playSequence();
-
+  $(".btn").addClass("disable");
   level++;
   $("h1").text(level);
 
-  user = [];
-  active = true;
+  let color = colors[Math.floor(Math.random() * 4)];
+  gameSeq.push(color);
+
+  setTimeout(function () {
+    gameSeq.forEach((c, i) => {
+      setTimeout(() => {
+        pressButton(c);
+      }, i * 600);
+    });
+  }, 1000);
+
+  setTimeout(function () {
+    $(".btn").removeClass("disable");
+    user = [];
+    count = 0;
+    active = true;
+  }, level * 600 + 1000);
+}
+
+function gameOver() {
+  active = false;
+  $("#cover").css("background", "red");
+  $("#cover").fadeIn(150).fadeOut(150);
+  $("h1").text("Game Over");
+  $("h3").text("Your Score: " + level);
+  level = -1;
+  gameSeq = [];
+  $("#start").text("Restart");
+  $("#start").show();
 }
