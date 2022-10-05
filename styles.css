@@ -3,19 +3,36 @@ body {
   background-color: #1d3557;
   color: #f1faee;
   font-family: "Silkscreen", cursive;
+  margin: 0;
+  height: 100%;
 }
 
 h1 {
   font-size: 5rem;
   margin-bottom: 10px;
+  margin-top: 30px;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+a, a:link, a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .btn {
   display: inline-block;
-  width: 14rem;
-  height: 14rem;
-  margin: 1.2rem;
-  border: 0.6rem solid #121212;
+  width: 11rem;
+  height: 11rem;
+  margin: 0.7rem;
+  border: 0.5rem solid #121212;
+  cursor: pointer;
 }
 
 .pressed {
@@ -62,10 +79,41 @@ h1 {
   background: blue;
 }
 
+#start-wrapper {
+  width: 17rem;
+  height: 5.5rem;
+  min-width: 100%;
+}
+
+#start {
+  font-family: "Silkscreen", cursive;
+  font-size: 2.5rem;
+  width: 17rem;
+  height: 4rem;
+  margin-top: 40px;
+  padding-bottom: 20px;
+  border-radius: 12px;
+  outline: none;
+  border: none;
+  background-color: #f1faee;
+  box-shadow: 0 9px #999;
+  cursor: pointer;
+}
+
+#start:active {
+  background-color: #cccccc;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
 #cover {
   background-color: #f1faee;
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
+}
+
+.disable {
+  pointer-events: none;
 }
